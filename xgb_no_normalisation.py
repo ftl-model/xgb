@@ -66,14 +66,14 @@ if st.button("Predict"):
         
     st.write(advice)
 
-# Calculate SHAP values and display force plot   
-    st.subheader("SHAP Force Plot Explanation")
+    # SHAP Explanation    
+    st.subheader("SHAP Force Plot Explanation")    
     explainer_shap = shap.TreeExplainer(model)    
-    shap_values = explainer_shap.shap_values(pd.DataFrame([feature_values], columns=feature_names))
-   
+    shap_values = explainer_shap.shap_values(pd.DataFrame([feature_values], columns=feature_names))    
+    # Display the SHAP force plot for the predicted class    
     if predicted_class == 1:        
         shap.force_plot(explainer_shap.expected_value[1], shap_values[:,:,1], pd.DataFrame([feature_values], columns=feature_names), matplotlib=True)    
     else:        
         shap.force_plot(explainer_shap.expected_value[0], shap_values[:,:,0], pd.DataFrame([feature_values], columns=feature_names), matplotlib=True)    
-    plt.savefig("shap_force_plot.png", bbox_inches='tight', dpi=1200)    
-    st.image("shap_force_plot.png", caption='SHAP Force Plot Explanation')
+        plt.savefig("shap_force_plot.png", bbox_inches='tight', dpi=1200)    
+        st.image("shap_force_plot.png", caption='SHAP Force Plot Explanation')
