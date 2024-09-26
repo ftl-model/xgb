@@ -78,6 +78,6 @@ if st.button("Predict"):
     explainer = shap.TreeExplainer(model)    
     shap_values = explainer.shap_values(pd.DataFrame([feature_values], columns=feature_names))
    
-    shap.plots.waterfall(explainer.expected_value, shap_values[0], pd.DataFrame([feature_values], columns=feature_names), matplotlib=True)   
+    shap.plots.waterfall(explainer.expected_value, shap_values[0], pd.DataFrame([feature_values], columns=feature_names))   
     plt.savefig("shap.plots.waterfall.png", bbox_inches='tight', dpi=1200)
     st.image("shap.plots.waterfall.png")
